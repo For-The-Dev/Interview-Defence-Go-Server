@@ -7,5 +7,5 @@ module.exports = async (req, res) => {
     redirectUri: 'http://localhost:8080/callback',
   };
   const githubAuthUrl = 'https://github.com/login/oauth/authorize?client_id=' + github.clientID + '&redirect_uri=' + github.redirectUri;
-  // res.redirect(githubAuthUrl);
+  res.redirect(githubAuthUrl);
 };

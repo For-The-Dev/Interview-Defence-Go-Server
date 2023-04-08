@@ -7,7 +7,8 @@ router.get('/', (req, res) => {
   return res.send('hi');
 });
 
+router.get('/auth/github', controller.auth);
 router.get('/callback', controller.callback);
-router.get('/auth/github', controller.callback);
+router.get('/logout', controller.logout);
 
 module.exports = router;

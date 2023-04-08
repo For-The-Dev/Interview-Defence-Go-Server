@@ -2,13 +2,11 @@ import React from 'react';
 import githubLogo from './../images/github.png';
 
 export default function Login() {
-  const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-  console.log(CLIENT_ID);
   const loginRequestHandler = () => {
     // TODO: GitHub로부터 사용자 인증을 위해 GitHub로 이동해야 합니다. 적절한 URL을 입력하세요.
     // OAuth 인증이 완료되면 authorization code와 함께 callback url로 리디렉션 합니다.
     // 참고: https://docs.github.com/en/free-pro-team@latest/developers/apps/identifying-and-authorizing-users-for-github-apps
-    return window.location.assign(`https://localhost:8080/auth/github`);
+    return window.location.assign(`http://localhost:8080/auth/github`);
   };
 
   return (

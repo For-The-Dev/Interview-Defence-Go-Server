@@ -15,8 +15,11 @@ module.exports = async (req, res) => {
       },
     });
 
-    console.log(resData.data);
     const accessToken = resData.data.access_token;
+    // 유저에게 토큰을 전달한다.
+    res.redirect(`http://localhost:3000?token=${accessToken}`);
+
+    // 유저 정보 요청 + 유저 정보 db에 저장 createOr?
   } catch (e) {
     res.send(e);
   }
