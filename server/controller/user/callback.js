@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
 
     // 인증과정 중 에러가 발생하면 에러페이지로 이동시켜준다.
     if (err) {
-      return res.redirect('http://localhost:3000/authError');
+      return res.redirect(`${process.env.CLIENT_URL}/authError`);
     }
 
     const hasTable = await getHasTable(userId);
@@ -43,7 +43,7 @@ module.exports = async (req, res) => {
       });
     }
     // 유저에게 토큰을 전달한다.
-    res.redirect(`http://localhost:3000?token=${accessToken}`);
+    res.redirect(`${process.env.CLIENT_URL}?token=${accessToken}`);
   } catch (e) {
     res.send(e);
   }
