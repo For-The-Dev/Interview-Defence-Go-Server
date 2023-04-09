@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
       },
     });
     console.log('로그아웃 성공');
-    res.send('');
+    res.status(205).send('Successfuly Logged Out');
   } catch (e) {
     console.log('에러남');
     res.send(e);

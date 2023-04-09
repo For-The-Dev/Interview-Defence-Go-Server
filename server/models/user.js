@@ -1,14 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
-  const user = sequelize.define('User', {
+  const user = sequelize.define('Users', {
     nickName: {
       type: DataTypes.STRING(60),
       allowNull: false,
     },
-    imageUrl: {
-      type: DataTypes.STRING(60),
+    avatar_url: {
+      type: DataTypes.STRING(200),
       allowNull: false,
     },
-    githubId: {
+    userId: {
       type: DataTypes.INTEGER(30),
       allowNull: false,
     },
