@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
     // 동적으로 생성한 테이블은 ORM 이용 불가함.
     const paginationQuery = `
       SELECT *
-      From '${tableName}'
+      FROM '${tableName}'
       ORDER BY id DESC
       LIMIT ${limit}
       OFFSET ${offset}
