@@ -8,9 +8,8 @@ module.exports = async (req, res) => {
   if (!authorization) return res.status(401).send('Invalid authorization');
 
   try {
-    const { userId, err } = await getUserInfo(authorization);
+    const { userId } = await getUserInfo(authorization);
     // 잘못된 토큰을 사용했을 경우 undefined의 값이 출력됨
-
     const user = await models.Users.findOne({
       where: {
         userId,
