@@ -2,7 +2,7 @@ const { sequelize, Sequelize } = require('../models');
 
 module.exports = async (userId) => {
   try {
-    const questionTable = await sequelize.define(`${userId}`, {
+    const questionTable = await sequelize.define(userId, {
       question: {
         // DataTypes.
         type: Sequelize.STRING(300),
