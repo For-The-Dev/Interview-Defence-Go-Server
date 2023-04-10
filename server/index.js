@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const models = require('./models');
-const questionRouter = require('./routes/question.js');
 const indexRouter = require('./routes');
 const userRouter = require('./routes/user.js');
 // 서버 제작
@@ -24,8 +23,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors(corsOptions));
 
+// github, 로그인 로그아웃 로직
 app.use('/', indexRouter);
-app.use('/question', questionRouter);
+// 질문 작성, 유저 정보, 유저 질문 조회 관련 로직
 app.use('/user', userRouter);
 // 서버가 대기중 서버가 요청을 기다린다. 즉 서버가 켜졋다.
 
