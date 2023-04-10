@@ -8,12 +8,11 @@ module.exports = async (accessToken) => {
         Authorization: `token ${accessToken}`,
       },
     });
-
     const {
       data: { login: nickName, id: userId, avatar_url },
     } = userInfo;
     return { nickName, userId: `${userId}s`, avatar_url };
   } catch (err) {
-    return { err };
+    return new Error(err);
   }
 };

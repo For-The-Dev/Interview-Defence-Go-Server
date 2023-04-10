@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
   try {
     const { userId, err } = await getUserInfo(authorization);
     // 잘못된 토큰을 사용했을 경우 undefined의 값이 출력됨
-    if (err) return res.status(401).send('Invalid user');
+
     const user = await models.Users.findOne({
       where: {
         userId,
@@ -19,7 +19,6 @@ module.exports = async (req, res) => {
 
     return res.status(200).send({ nickName: user.nickName, avatar_url: user.avatar_url });
   } catch (e) {
-    console.log(e);
-    return res.send(e);
+    return res.status(401).send('Invalid authorization');
   }
 };

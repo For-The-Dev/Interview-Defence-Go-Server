@@ -23,12 +23,7 @@ module.exports = async (req, res) => {
     });
     const accessToken = resData.data.access_token;
 
-    const { userId, nickName, avatar_url, err } = await getUserInfo(accessToken);
-
-    // 인증과정 중 에러가 발생하면 에러페이지로 이동시켜준다.
-    if (err) {
-      return res.redirect(`${process.env.CLIENT_URL}/authError`);
-    }
+    const { userId, nickName, avatar_url } = await getUserInfo(accessToken);
 
     const hasTable = await getHasTable(userId);
     // 만약 해당 테이블이 존재하지 않는다면 회원가입이 진행되어야 하는 유저이다.
@@ -45,6 +40,7 @@ module.exports = async (req, res) => {
     // 유저에게 토큰을 전달한다.
     res.redirect(`${process.env.CLIENT_URL}?token=${accessToken}`);
   } catch (e) {
-    res.send(e);
+    console.log(e);
+    return res.redirect(`${process.env.CLIENT_URL}/authError`);
   }
 };

@@ -13,7 +13,7 @@ module.exports = async (userId) => {
       return false;
     }
   } catch (e) {
-    return false;
+    return new Error(e);
   }
 };
 // 테이블이 존재하는지 확인합니다.

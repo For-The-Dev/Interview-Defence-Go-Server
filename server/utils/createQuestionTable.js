@@ -18,8 +18,6 @@ module.exports = async (userId) => {
 
     return true;
   } catch (e) {
-    console.log(userId);
-    console.log(e);
-    return e;
+    return new Error(e);
   }
 };
