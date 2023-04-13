@@ -6,4 +6,5 @@ module.exports = {
   editQuestion: require('./question/editQuestion'),
   getQuestion: require('./question/getQuestion'),
   questionDetail: require('./question/questionDetail'),
+  sendGpt: require('./getGpt/interviewSet'),
 };

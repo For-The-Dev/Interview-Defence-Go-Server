@@ -1,8 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const models = require('./models');
 const indexRouter = require('./routes');
 const userRouter = require('./routes/user.js');
+const gptRouter = require('./routes/gpt.js');
+
 // 서버 제작
 const app = express();
 
@@ -28,6 +31,7 @@ app.use('/', indexRouter);
 // 질문 작성, 유저 정보, 유저 질문 조회 관련 로직
 app.use('/user', userRouter);
 // 서버가 대기중 서버가 요청을 기다린다. 즉 서버가 켜졋다.
+app.use('/gpt', gptRouter);
 
 app.listen(port, () => {
   console.log('server On');
