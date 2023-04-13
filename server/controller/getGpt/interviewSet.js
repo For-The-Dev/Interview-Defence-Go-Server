@@ -9,15 +9,19 @@ const configuration = new Configuration({
 const openAi = new OpenAIApi(configuration);
 
 module.exports = async (req, res) => {
-  const { message } = req.body;
-  if (!message) return res.status(400).send('메세지를 입력해주세요');
-  console.log(message);
+  const { question } = req.body;
+  if (!question) return res.status(400).send('메세지를 입력해주세요');
   const response = await openAi.createCompletion({
     model: 'text-davinci-003',
-    prompt: `${message}`,
+    prompt: `${question}`,
     max_tokens: 4000,
     temperature: 0,
   });
 
-  res.status(200).send(response);
+  // 빈 항목은 제외 시킴
+  const data = response.data.choices[0].text
+    .split('\n')
+    .filter((question) => question.length > 3)
+    .map((question) => question.slice(3));
+  res.json(data);
 };
