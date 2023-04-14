@@ -21,6 +21,6 @@ module.exports = async (userId) => {
 
     return true;
   } catch (e) {
-    return new Error(e);
+    throw new Error(e);
   }
 };

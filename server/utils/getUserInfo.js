@@ -13,6 +13,6 @@ module.exports = async (accessToken) => {
     } = userInfo;
     return { nickName, userId: `${userId}s`, avatar_url };
   } catch (err) {
-    return new Error(err);
+    throw new Error(err);
   }
 };

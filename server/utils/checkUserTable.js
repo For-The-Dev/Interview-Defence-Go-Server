@@ -13,6 +13,6 @@ module.exports = async (accessToken) => {
     // 유저 아이디를 반환함
     return findId;
   } catch (e) {
-    return new Error(e);
+    throw new Error(e);
   }
 };
