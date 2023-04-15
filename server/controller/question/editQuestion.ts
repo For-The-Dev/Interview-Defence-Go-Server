@@ -1,7 +1,10 @@
-const models = require('../../models');
-const checkUserTable = require('../../utils/checkUserTable');
+import db from '../../models/index';
+import { QueryTypes } from 'sequelize';
+import { Response, Request } from 'express';
 
-module.exports = async (req, res) => {
+import checkUserTable from '../../utils/checkUserTable';
+
+const editQuestion = async (req: Request, res: Response) => {
   const data = req.body;
   const { question, answer } = data;
   const { authorization } = req.headers;
@@ -12,10 +15,12 @@ module.exports = async (req, res) => {
     const createQuery = `
     INSERT INTO '${tableName}' (question, answer,createdAt,updatedAt) VALUES ('${question}', '${answer}',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)
     `;
-    const createData = await models.sequelize.query(createQuery, { type: models.Sequelize.QueryTypes.INSERT });
+    const createData = await db.sequelize.query(createQuery, { type: QueryTypes.INSERT });
     res.status(201).send('create!');
   } catch (e) {
     console.log(e);
     res.status(406).send(e);
   }
 };
+
+export default editQuestion;

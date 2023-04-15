@@ -1,6 +1,8 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+import { Request, Response } from 'express';
+dotenv.config();
 
-module.exports = async (req, res) => {
+const auth = async (req: Request, res: Response) => {
   const github = {
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
@@ -9,3 +11,5 @@ module.exports = async (req, res) => {
   const githubAuthUrl = 'https://github.com/login/oauth/authorize?client_id=' + github.clientID + '&redirect_uri=' + github.redirectUri;
   res.redirect(githubAuthUrl);
 };
+
+export default auth;

@@ -1,6 +1,6 @@
-const axios = require('axios');
+import axios from 'axios';
 
-module.exports = async (accessToken) => {
+const getUserInfo = async (accessToken: string) => {
   try {
     // 깃허브에 유저 정보 요청
     const userInfo = await axios.get('https://api.github.com/user', {
@@ -12,7 +12,9 @@ module.exports = async (accessToken) => {
       data: { login: nickName, id: userId, avatar_url },
     } = userInfo;
     return { nickName, userId: `${userId}s`, avatar_url };
-  } catch (err) {
+  } catch (err: any) {
     throw new Error(err);
   }
 };
+
+export default getUserInfo;

@@ -1,10 +1,12 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const models = require('./models');
-const indexRouter = require('./routes');
-const userRouter = require('./routes/user.js');
-const gptRouter = require('./routes/gpt.js');
+import dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
+import db from './models/index';
+import indexRouter from './routes/index';
+import userRouter from './routes/user';
+import gptRouter from './routes/gpt';
+
+dotenv.config();
 
 // 서버 제작
 const app = express();
@@ -34,14 +36,13 @@ app.use('/user', userRouter);
 app.use('/gpt', gptRouter);
 
 app.listen(port, () => {
-  console.log('server On');
   // 데이터베이스와의 동기화?
-  models.sequelize
+  db.sequelize
     .sync()
     .then(() => {
       console.log('db fin');
     })
-    .catch((err) => {
+    .catch((err: any) => {
       console.log(err);
       // 문제 생기면 프로세스 종료
       process.exit();

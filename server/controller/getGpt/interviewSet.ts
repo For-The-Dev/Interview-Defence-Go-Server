@@ -1,3 +1,5 @@
+import { Response, Request } from 'express';
+
 const OpenAI = require('openai');
 const { Configuration, OpenAIApi } = OpenAI;
 
@@ -8,7 +10,7 @@ const configuration = new Configuration({
 
 const openAi = new OpenAIApi(configuration);
 
-module.exports = async (req, res) => {
+const interviewSet = async (req: Request, res: Response) => {
   const { question } = req.body;
   if (!question) return res.status(400).send('메세지를 입력해주세요');
 
@@ -34,3 +36,5 @@ module.exports = async (req, res) => {
 
   // 빈 항목은 제외 시킴
 };
+
+export default interviewSet;

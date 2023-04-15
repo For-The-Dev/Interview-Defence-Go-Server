@@ -1,7 +1,8 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 const axios = require('axios');
-
-module.exports = async (req, res) => {
+import { Request, Response } from 'express';
+const logout = async (req: Request, res: Response) => {
   const token = req.headers.authorization;
   const CLIENT_ID = process.env.CLIENT_ID;
   const CLIENT_SECRET = process.env.CLIENT_SECRET;
@@ -22,3 +23,5 @@ module.exports = async (req, res) => {
     res.send(e);
   }
 };
+
+export default logout;

@@ -1,7 +1,7 @@
-const express = require('express');
-const models = require('../models');
-const controller = require('../controller');
-const router = express.Router();
+import { Router } from 'express';
+import controller from '../controller';
+
+const router = Router();
 
 // 유저 정보 조회
 router.get('/', controller.userInfo);
@@ -15,4 +15,4 @@ router.get('/question/:id', controller.questionDetail);
 // 유저가 질문+답변 등록하기
 router.post('/editQuestion', controller.editQuestion);
 
-module.exports = router;
+export default router;
