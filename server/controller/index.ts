@@ -6,7 +6,7 @@ import editQuestion from './question/editQuestion';
 import getQuestion from './question/getQuestion';
 import questionDetail from './question/questionDetail';
 import sendGpt from './getGpt/interviewSet';
-
+import answerCheck from './getGpt/answerCheck';
 const controller = {
   auth,
   callback,
@@ -16,6 +16,7 @@ const controller = {
   getQuestion,
   questionDetail,
   sendGpt,
+  answerCheck,
 };
 
 export default controller;
