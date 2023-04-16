@@ -43,7 +43,6 @@ const callback = async (req: Request, res: Response) => {
     // 유저에게 토큰을 전달한다.
     res.redirect(`${process.env.CLIENT_URL}?token=${accessToken}`);
   } catch (e) {
-    console.log(e);
     return res.redirect(`${process.env.CLIENT_URL}/authError`);
   }
 };

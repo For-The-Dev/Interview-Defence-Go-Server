@@ -52,7 +52,7 @@ const getQuestion = async (req: Request, res: Response) => {
       },
     });
   } catch (e) {
-    res.status(400).send('Error: ' + e);
+    res.status(401).send('UnAuthorized');
   }
 };
 

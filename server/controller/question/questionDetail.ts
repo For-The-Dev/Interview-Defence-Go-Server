@@ -31,7 +31,7 @@ const questionDetail = async (req: Request, res: Response) => {
 
     res.send(getDetails[0]);
   } catch (e) {
-    return res.status(400).send('bad request');
+    res.status(401).send('UnAuthorized');
   }
 };
 
