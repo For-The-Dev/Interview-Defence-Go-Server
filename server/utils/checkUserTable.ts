@@ -1,10 +1,8 @@
 import user from '../models/user';
 import getUserInfo from './getUserInfo';
 
-const checkUserTable = async (accessToken: string) => {
+const checkUserTable = async (userId: string) => {
   try {
-    const { userId } = await getUserInfo(accessToken);
-
     const findUser = await user.findOne({
       where: {
         userId,

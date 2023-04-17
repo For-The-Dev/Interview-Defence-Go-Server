@@ -29,11 +29,11 @@ const interviewSet = async (req: Request, res: Response) => {
       frequency_penalty: 0.0,
       presence_penalty: 0.0,
     });
+
     const data = response.data.choices[0].text.split('\n').filter((question: string) => question.length > 0);
 
     res.json(data);
   } catch (e) {
-    console.error(e);
     res.status(500).send('서버 에러');
   }
 

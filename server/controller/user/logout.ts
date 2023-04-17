@@ -16,11 +16,9 @@ const logout = async (req: Request, res: Response) => {
         password: CLIENT_SECRET,
       },
     });
-    console.log('로그아웃 성공');
     res.status(205).send('Successfuly Logged Out');
   } catch (e) {
-    console.log('에러남');
-    res.send(e);
+    res.status(401).send('UnAuthorized');
   }
 };
 
