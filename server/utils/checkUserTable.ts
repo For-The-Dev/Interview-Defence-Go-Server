@@ -1,9 +1,9 @@
-import user from '../models/user';
+import { User } from '../models/user';
 import getUserInfo from './getUserInfo';
 
 const checkUserTable = async (userId: string) => {
   try {
-    const findUser = await user.findOne({
+    const findUser = await User.findOne({
       where: {
         userId,
       },

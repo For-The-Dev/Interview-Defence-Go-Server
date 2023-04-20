@@ -1,6 +1,6 @@
 import getUserInfo from '../../utils/getUserInfo';
 import dotenv from 'dotenv';
-import user from '../../models/user';
+import { User } from '../../models/user';
 import { Response, Request } from 'express';
 dotenv.config();
 
@@ -9,7 +9,7 @@ const userInfo = async (req: Request, res: Response) => {
 
   try {
     // 잘못된 토큰을 사용했을 경우 undefined의 값이 출력됨
-    const findUser = await user.findOne({
+    const findUser = await User.findOne({
       where: {
         userId,
       },

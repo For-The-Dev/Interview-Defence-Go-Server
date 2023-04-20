@@ -5,7 +5,7 @@ import getUserInfo from '../../utils/getUserInfo';
 import getHasTable from '../../utils/getHasTable';
 import createQuestionTable from '../../utils/createQuestionTable';
 import { Request, Response } from 'express';
-import user from '../../models/user';
+import { User } from '../../models/user';
 
 dotenv.config();
 // 깃허브에서 해당 코드로 리턴을 시켜줌.(인가 코드)
@@ -34,7 +34,7 @@ const callback = async (req: Request, res: Response) => {
       // 유저별 테이블 제작
       await createQuestionTable(userId);
       // 회원가입 유저 등록
-      await user.create({
+      await User.create({
         userId,
         nickName,
         avatar_url,
