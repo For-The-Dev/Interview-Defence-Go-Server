@@ -8,7 +8,11 @@ const auth = async (req: Request, res: Response) => {
     clientSecret: process.env.CLIENT_SECRET,
     redirectUri: `${process.env.SERVER_URL}/callback`,
   };
-  const githubAuthUrl = 'https://github.com/login/oauth/authorize?client_id=' + github.clientID + '&redirect_uri=' + github.redirectUri;
+  const githubAuthUrl =
+    'https://github.com/login/oauth/authorize?client_id=' +
+    github.clientID +
+    '&redirect_uri=' +
+    github.redirectUri;
   res.redirect(githubAuthUrl);
 };
 
