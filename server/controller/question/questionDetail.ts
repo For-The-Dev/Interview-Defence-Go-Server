@@ -1,7 +1,6 @@
-import { QueryTypes } from 'sequelize';
-import db from '../../models/index';
 import checkUserTable from '../../utils/checkUserTable';
 import { Request, Response } from 'express';
+import { Answer, Question } from '../../models/user';
 
 interface TotalCount {
   count: number;
@@ -9,26 +8,30 @@ interface TotalCount {
 
 const questionDetail = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { userId } = res.locals.userInfo;
+  const { githubId } = res.locals.userInfo;
   if (!id) return res.status(400).send('bad request');
   // 데이터를 한가지만 찾을때는 findOne을 사용한다. model.테이블명.findOne({ 조건 })
-  //  {안에 조건을 써준다. where : { id }} 여기서 id는 컬럼에 id가 params에 아이디랑 같은 것을 찾는 것.
   try {
-    const tableName = await checkUserTable(userId);
+    const tableName = await checkUserTable(githubId);
 
-    const getTotalCount = (await db.sequelize.query(`SELECT COUNT(*) as count FROM '${tableName}'`, {
-      type: QueryTypes.SELECT,
-    })) as TotalCount[];
-
-    if (getTotalCount.length > 0 && getTotalCount[0].count < +id) return res.status(400).send('데이터 수를 초과하였습니다.');
-    const detailQuery = `
-    SELECT * FROM '${tableName}' WHERE id=${id}
-    `;
-    const getDetails = await db.sequelize.query(detailQuery, {
-      type: QueryTypes.SELECT,
+    const getQA = await Question.findOne({
+      where: {
+        id,
+        UserGithubId: githubId,
+      },
+      include: [
+        {
+          model: Answer,
+          attributes: ['text', 'id', 'createdAt', 'nickName'],
+          // 우선 최근 5개까지만 보여주기
+          limit: 3,
+          order: [['createdAt', 'DESC']],
+        },
+      ],
+      attributes: ['text', 'id', 'nickName', 'createdAt'],
     });
 
-    res.send(getDetails[0]);
+    res.send(getQA);
   } catch (e) {
     res.status(400).send('bad Request');
   }
