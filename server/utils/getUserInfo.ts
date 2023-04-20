@@ -9,9 +9,9 @@ const getUserInfo = async (accessToken: string) => {
       },
     });
     const {
-      data: { login: nickName, id: userId, avatar_url },
+      data: { login: nickName, id: githubId, avatar_url },
     } = userInfo;
-    return { nickName, userId: `${userId}s`, avatar_url };
+    return { nickName, githubId: githubId, avatar_url };
   } catch (err: any) {
     throw new Error(err);
   }
