@@ -6,11 +6,11 @@ const tokenCheck: FuncType = async (req, res, next) => {
   const { authorization } = req.headers;
   if (!authorization) return res.status(401).send('Invalid authorization');
   try {
-    const { nickName, avatar_url, userId } = await getUserInfo(authorization);
+    const { nickName, avatar_url, githubId } = await getUserInfo(authorization);
     const userInfo = {
       nickName,
       avatar_url,
-      userId,
+      githubId,
     };
 
     res.locals.userInfo = userInfo;

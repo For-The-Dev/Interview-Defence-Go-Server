@@ -29,7 +29,9 @@ const answerCheck = async (req: Request, res: Response) => {
       presence_penalty: 0.0,
     });
 
-    const data = response.data.choices[0].text.split('\n').filter((collect: string) => collect.length > 3);
+    const data = response.data.choices[0].text
+      .split('\n')
+      .filter((collect: string) => collect.length > 3);
     res.json(data);
   } catch (e) {
     res.status(500).send('서버 에러');

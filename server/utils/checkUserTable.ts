@@ -1,16 +1,15 @@
-import user from '../models/user';
-import getUserInfo from './getUserInfo';
+import { User } from '../models/user';
 
-const checkUserTable = async (userId: string) => {
+const checkUserTable = async (githubId: number) => {
   try {
-    const findUser = await user.findOne({
+    const findUser = await User.findOne({
       where: {
-        userId,
+        githubId,
       },
     });
     // 유저 아이디를 반환함
     if (findUser) {
-      return findUser.userId;
+      return findUser.githubId;
     } else {
       throw new Error('User not found');
     }
