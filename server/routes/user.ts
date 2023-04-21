@@ -28,4 +28,6 @@ router.post(
   controller.answerCheck
 );
 
+router.post('/test', controller.test);
+
 export default router;
