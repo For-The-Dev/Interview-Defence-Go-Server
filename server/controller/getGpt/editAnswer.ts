@@ -10,7 +10,7 @@ const configuration = new Configuration({
 
 const openAi = new OpenAIApi(configuration);
 
-const answerCheck = async (req: Request, res: Response) => {
+const editAnswer = async (req: Request, res: Response) => {
   const { question, answer } = req.body;
 
   try {
@@ -38,4 +38,4 @@ const answerCheck = async (req: Request, res: Response) => {
   }
 };
 
-export default answerCheck;
+export default editAnswer;

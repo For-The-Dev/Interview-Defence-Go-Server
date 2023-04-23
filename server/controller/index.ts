@@ -6,7 +6,7 @@ import editQuestion from './question/editQuestion';
 import getQuestion from './question/getQuestion';
 import questionDetail from './question/questionDetail';
 import sendGpt from './getGpt/interviewSet';
-import answerCheck from './getGpt/answerCheck';
+import editAnswer from './getGpt/editAnswer';
 import tokenCheck from './user/tokenCheck';
 import addAnswer from './question/addAnswer';
 import test from './getGpt/test';
@@ -19,7 +19,7 @@ const controller = {
   getQuestion,
   questionDetail,
   sendGpt,
-  answerCheck,
+  editAnswer,
   tokenCheck,
   addAnswer,
   test,
