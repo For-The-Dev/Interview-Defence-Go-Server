@@ -9,7 +9,7 @@ import sendGpt from './getGpt/interviewSet';
 import editAnswer from './getGpt/editAnswer';
 import tokenCheck from './user/tokenCheck';
 import addAnswer from './question/addAnswer';
-import test from './getGpt/test';
+import checkAllAnswer from './getGpt/checkAllAnswer';
 const controller = {
   auth,
   callback,
@@ -22,6 +22,6 @@ const controller = {
   editAnswer,
   tokenCheck,
   addAnswer,
-  test,
+  checkAllAnswer,
 };
 export default controller;
