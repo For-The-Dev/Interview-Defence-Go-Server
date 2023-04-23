@@ -32,7 +32,7 @@ const getQuestion = async (req: Request, res: Response) => {
         {
           model: Answer,
           attributes: ['id', 'text', 'createdAt', 'nickName'],
-          limit: 3,
+          limit: 1,
           order: [['createdAt', 'DESC']],
         },
       ],
