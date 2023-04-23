@@ -35,6 +35,10 @@ app.use('/user', userRouter);
 // 서버가 대기중 서버가 요청을 기다린다. 즉 서버가 켜졋다.
 app.use('/gpt', gptRouter);
 
+app.use('*', (req, res) => {
+  res.status(404).json({ message: 'Not Found' });
+});
+
 app.listen(port, () => {
   // 데이터베이스와의 동기화?
   db.sequelize
