@@ -18,7 +18,7 @@ const corsOptions = {
   /* TODO: CORS 설정이 필요합니다. 클라이언트가 어떤 origin인지에 따라 달리 설정할 수 있습니다.
    * 메서드는 GET, POST, OPTIONS, DELETE를 허용합니다.
    */
-  origin: true,
+  origin: process.env.CLIENT_URL,
   methods: ['GET', 'POST', 'OPTIONS', 'DELETE'],
   credentials: true,
 };
