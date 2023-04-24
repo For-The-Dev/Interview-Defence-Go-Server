@@ -1,5 +1,3 @@
-import { QueryTypes, Sequelize } from 'sequelize';
-import db from '../../models/index';
 import checkUserTable from '../../utils/checkUserTable';
 import { Request, Response } from 'express';
 import { Answer, Question, User } from '../../models/user';

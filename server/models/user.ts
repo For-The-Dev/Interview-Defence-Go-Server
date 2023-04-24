@@ -1,10 +1,5 @@
-import {
-  Model,
-  Optional,
-  DataTypes,
-  HasManyGetAssociationsMixin,
-} from 'sequelize';
-import db from './index';
+import { Model, Optional, DataTypes } from 'sequelize';
+import { sequelize } from './index';
 
 interface UserAttributes {
   nickName: string;
@@ -18,11 +13,10 @@ interface UserInstance
     UserAttributes {
   createdAt?: Date;
   updatedAt?: Date;
-  getAnswer: HasManyGetAssociationsMixin<AnswerAttributes>;
 }
 
 // 유저를 저장하는 테이블 구조
-const User = db.sequelize.define<UserInstance>('Users', {
+const User = sequelize.define<UserInstance>('Users', {
   nickName: {
     type: DataTypes.STRING(60),
     allowNull: false,
@@ -56,7 +50,7 @@ interface QuestionInstance
   updatedAt?: Date;
 }
 
-const Question = db.sequelize.define<QuestionInstance>('Question', {
+const Question = sequelize.define<QuestionInstance>('Question', {
   text: {
     type: DataTypes.STRING(300),
     allowNull: false,
@@ -92,7 +86,7 @@ interface AnswerInstance
 }
 
 // Answer 모델 정의
-const Answer = db.sequelize.define<AnswerInstance>('Answer', {
+const Answer = sequelize.define<AnswerInstance>('Answer', {
   text: {
     type: DataTypes.STRING(300),
     allowNull: false,

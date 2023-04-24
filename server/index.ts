@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
-import db from './models/index';
+import { sequelize } from './models/index';
 import indexRouter from './routes/index';
 import userRouter from './routes/user';
 import gptRouter from './routes/gpt';
@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 
 // 동작 포트
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 const corsOptions = {
   /* TODO: CORS 설정이 필요합니다. 클라이언트가 어떤 origin인지에 따라 달리 설정할 수 있습니다.
@@ -41,7 +41,7 @@ app.use('*', (req, res) => {
 
 app.listen(port, () => {
   // 데이터베이스와의 동기화?
-  db.sequelize
+  sequelize
     .sync()
     .then(() => {
       console.log('db fin');
