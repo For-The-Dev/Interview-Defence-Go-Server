@@ -39,7 +39,13 @@ const getQuestion = async (req: Request, res: Response) => {
       limit: +limit,
       offset,
     });
-    res.json({ ...getAllData, limit: +limit });
+    res.json({
+      data: [...getAllData.rows],
+      pageInfo: {
+        limit: +limit,
+        totalCount: getAllData.count,
+      },
+    });
   } catch (e) {
     console.log(e);
     res.status(400).send('bad Request');
