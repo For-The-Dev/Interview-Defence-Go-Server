@@ -72,6 +72,7 @@ interface AnswerAttributes {
   QuestionId?: number;
   UserGithubId?: number;
   nickName: string;
+  createdAt?: Date;
 }
 
 // Answer 모델 생성 시 필요한 속성들 중 생략 가능한 속성들을 정의하는 인터페이스
