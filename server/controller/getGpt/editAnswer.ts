@@ -39,7 +39,7 @@ const editAnswer = async (req: Request, res: Response) => {
       aiAnswer: data[0],
     };
 
-    res.json(responseAllData);
+    res.json([responseAllData]);
   } catch (e) {
     res.status(500).send('서버 에러');
   }
