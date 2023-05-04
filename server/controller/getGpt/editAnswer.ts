@@ -32,7 +32,14 @@ const editAnswer = async (req: Request, res: Response) => {
     const data = response.data.choices[0].text
       .split('\n')
       .filter((collect: string) => collect.length > 3);
-    res.json(data);
+
+    const responseAllData = {
+      question,
+      userAnswer: answer,
+      aiAnswer: data[0],
+    };
+
+    res.json(responseAllData);
   } catch (e) {
     res.status(500).send('서버 에러');
   }

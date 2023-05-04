@@ -49,7 +49,18 @@ const checkAllAnswer = async (req: Request, res: Response) => {
         .join('');
     });
 
-    res.json(answerDataFilter);
+    const responseAllData = body.map((data: QAType, idx: number) => {
+      const { question, answer } = data;
+      const aiData = answerDataFilter[idx];
+
+      return {
+        question,
+        userAnswer: answer,
+        aiAnswer: aiData,
+      };
+    });
+
+    res.json(responseAllData);
   } catch (e) {
     res.status(500).send('서버 에러');
   }
