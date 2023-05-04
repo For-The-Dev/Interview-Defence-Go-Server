@@ -22,7 +22,8 @@ const editQuestion = async (
   res: Response,
   next: NextFunction
 ) => {
-  const data = req.body;
+  const { data } = req.body;
+
   if (data.length < 0) return res.status(400).send('bad request');
   const { githubId, nickName }: { githubId: number; nickName: string } =
     res.locals.userInfo;

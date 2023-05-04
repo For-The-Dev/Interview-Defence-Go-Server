@@ -11,7 +11,7 @@ const configuration = new Configuration({
 const openAi = new OpenAIApi(configuration);
 
 const editAnswer = async (req: Request, res: Response) => {
-  const { question, answer } = req.body;
+  const { question, answer } = req.body.data;
 
   try {
     const response = await openAi.createCompletion({

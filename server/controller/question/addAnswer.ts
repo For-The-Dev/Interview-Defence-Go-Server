@@ -4,7 +4,7 @@ import { Question, Answer } from '../../models/user';
 
 // 해당 라우터는 진짜 첫 질문과 첫 답변을 등록하는 곳이다.
 const addAnswer = async (req: Request, res: Response, next: NextFunction) => {
-  const data = req.body;
+  const { data } = req.body;
   const { id } = req.params;
   const { question, answer } = data;
   const { githubId, nickName }: { githubId: number; nickName: string } =

@@ -31,13 +31,13 @@ const getAiData = (question: string, answer: string) => {
   });
 };
 const checkAllAnswer = async (req: Request, res: Response) => {
-  const body = req.body;
+  const { data } = req.body;
 
   try {
     // openAi.createCompletion은 promise를 반환함.
     // promise All(promise 배열이 들어가야함.)
     const responses = await Promise.all(
-      body.map((qa: QAType) => {
+      data.map((qa: QAType) => {
         const { question, answer } = qa;
         return getAiData(question, answer);
       })
@@ -49,7 +49,7 @@ const checkAllAnswer = async (req: Request, res: Response) => {
         .join('');
     });
 
-    const responseAllData = body.map((data: QAType, idx: number) => {
+    const responseAllData = data.map((data: QAType, idx: number) => {
       const { question, answer } = data;
       const aiData = answerDataFilter[idx];
 
