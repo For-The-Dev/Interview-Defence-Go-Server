@@ -60,7 +60,7 @@ const editQuestion = async (
     next();
   } catch (e: any) {
     // 토큰 에러는 앞선 라우터에서 정리함
-    console.log(e);
+
     res.status(400).send('bad Request');
   }
 };
