@@ -10,8 +10,7 @@ const addAnswer = async (req: Request, res: Response, next: NextFunction) => {
   const { githubId, nickName }: { githubId: number; nickName: string } =
     res.locals.userInfo;
 
-  if (!question || !answer || !id)
-    return res.status(400).send('조건이 잘못되었습니다.');
+  if (!question || !id) return res.status(400).send('조건이 잘못되었습니다.');
   const questionTable = await Question.findAll({
     where: {
       id,
