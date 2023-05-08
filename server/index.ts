@@ -14,19 +14,38 @@ const app = express();
 // 동작 포트
 const port = process.env.PORT || 8080;
 
-const corsOptions = {
-  /* TODO: CORS 설정이 필요합니다. 클라이언트가 어떤 origin인지에 따라 달리 설정할 수 있습니다.
-   * 메서드는 GET, POST, OPTIONS, DELETE를 허용합니다.
-   */
-  origin: process.env.CLIENT_URL,
-  methods: ['GET', 'POST', 'OPTIONS', 'DELETE'],
-  credentials: true,
-};
+// const corsOptions = {
+//   origin: [
+//     'https://interview-defence-go-client.vercel.app',
+//     'http://localhost:3000',
+//   ],
+//   credentials: true,
+//   optionsSuccessStatus: 200,
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+// };
+
+// const corsOptions = {
+//   /* TODO: CORS 설정이 필요합니다. 클라이언트가 어떤 origin인지에 따라 달리 설정할 수 있습니다.
+//    * 메서드는 GET, POST, OPTIONS, DELETE를 허용합니다.
+//    */
+//   origin: [
+//     process.env.CLIENT_URL,
+//     process.env.CLIENT_PRODUCTION_URL,
+//   ] as string[],
+//   methods: ['GET', 'POST', 'OPTIONS', 'DELETE'],
+//   credentials: true,
+// };
 
 app.use(express.urlencoded({ extended: false }));
 // json 형식의 데이터를 처리할 수 있는 코드
 app.use(express.json());
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: 'https://interview-defence-go-client.vercel.app',
+    credentials: true,
+    methods: ['GET', 'POST', 'OPTIONS', 'DELETE'],
+  })
+);
 
 // github, 로그인 로그아웃 로직
 app.use('/', indexRouter);

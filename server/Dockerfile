@@ -27,6 +27,8 @@ RUN npm install --production=false
 # Copy application code
 COPY --link . .
 
+COPY --link ./database.sqlite3 ./dist/
+
 # Build application
 RUN npm run build
 

@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for indegoserver on 2023-04-24T22:51:39+09:00
+# fly.toml app configuration file generated for indego-server on 2023-05-08T01:23:47+09:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "indegoserver"
+app = "indego-server"
 primary_region = "nrt"
 
 [env]

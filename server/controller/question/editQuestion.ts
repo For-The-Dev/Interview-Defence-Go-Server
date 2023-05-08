@@ -24,7 +24,7 @@ const editQuestion = async (
 ) => {
   const { data } = req.body;
 
-  if (data.length < 0) return res.status(400).send('bad request');
+  if (data.length < 0) return res.status(400).send('bad request no data');
   const { githubId, nickName }: { githubId: number; nickName: string } =
     res.locals.userInfo;
 
@@ -60,8 +60,7 @@ const editQuestion = async (
     next();
   } catch (e: any) {
     // 토큰 에러는 앞선 라우터에서 정리함
-
-    res.status(400).send('bad Request');
+    res.status(400).send('Generated Error');
   }
 };
 
