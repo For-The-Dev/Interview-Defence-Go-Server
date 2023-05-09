@@ -47,7 +47,7 @@ app.use(
   })
 );
 
-// github, 로그인 로그아웃 로직
+// github, 로그인 로그아웃 로직 - 배포 테스트
 app.use('/', indexRouter);
 // 질문 작성, 유저 정보, 유저 질문 조회 관련 로직
 app.use('/user', userRouter);
