@@ -14,6 +14,10 @@ jobs:
         with:
           token: ${{ secrets.CLOUDTYPE_TOKEN }}
           ghtoken: ${{ secrets.GHP_TOKEN }}
+      - name: Install dependencies
+        run: cd server && npm install
+      - name: Build
+        run: cd server && npm run build
       - name: Deploy
         uses: cloudtype-github-actions/deploy@v1
         with:
@@ -33,8 +37,6 @@ jobs:
                   value: fc63a46c5ac846351e265a42ec24ba1d8cdc7ce1
                 - name: CLIENT_PRODUCTION_URL
                   value: https://interview-defence-go-client.vercel.app
-                - name: OPENAI_SECRET_KEY
-                  value: https://indego-server.fly.dev
                 - name: OPENAI_SECRET_KEY
                   value: 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
                 - name: OPENAI_ORGANIZATION
