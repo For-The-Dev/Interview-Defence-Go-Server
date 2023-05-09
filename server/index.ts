@@ -41,7 +41,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(
   cors({
-    origin: 'https://interview-defence-go-client.vercel.app',
+    origin: process.env.CLIENT_PRODUCTION_URL,
     credentials: true,
     methods: ['GET', 'POST', 'OPTIONS', 'DELETE'],
   })
