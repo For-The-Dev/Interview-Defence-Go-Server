@@ -16,6 +16,7 @@ const tokenCheck: FuncType = async (req, res, next) => {
     res.locals.userInfo = userInfo;
     next();
   } catch (e) {
+    console.log('heres error');
     res.status(401).send(`Invalid authorization`);
   }
 };
