@@ -10,12 +10,6 @@ export const sequelize = new Sequelize(
   {
     dialect: 'sqlite',
     storage: './database.sqlite3',
-    dialectOptions: {
-      // for reading
-      useUTC: false,
-      timezone: '+09:00',
-    },
-    timezone: '+09:00', // for writing
   }
 );
 

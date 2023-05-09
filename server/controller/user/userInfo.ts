@@ -31,13 +31,23 @@ const todayAnswerCountfunc = async (githubId: string, today: number) =>
 
 const userInfo = async (req: Request, res: Response) => {
   const { githubId } = res.locals.userInfo;
-  const today = new Date().setHours(0, 0, 0, 0);
+  const today = new Date();
+  const nineHoursAgo = new Date(today.setHours(today.getHours() + 9)).setHours(
+    0,
+    0,
+    0,
+    0
+  );
+  /* 
+  현재 시각을 기준으로 0,0,0,0으로 세팅
+  console.log(new Date(new Date().setHours(new Date().getHours() + 9))).setHours(0, 0, 0, 0);
+  */
 
   try {
     const [findUser, findAllAnswerCount, todayAnswerCount] = await Promise.all([
       findUserfunc(githubId),
       findAllAnswerCountfunc(githubId),
-      todayAnswerCountfunc(githubId, today),
+      todayAnswerCountfunc(githubId, nineHoursAgo),
     ]);
     // 잘못된 토큰을 사용했을 경우 undefined의 값이 출력됨
 
