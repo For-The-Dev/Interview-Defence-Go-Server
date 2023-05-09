@@ -7,8 +7,18 @@ export const sequelize = new Sequelize(
   config.development.database,
   config.development.username,
   config.development.password,
-  { dialect: 'sqlite', storage: './database.sqlite3' }
+  {
+    dialect: 'sqlite',
+    storage: './database.sqlite3',
+    timezone: 'Asia/Seoul',
+    dialectOptions: {
+      charset: 'utf8mb4',
+      dateStrings: true,
+      typeCast: true,
+    },
+  }
 );
+
 // import fs from 'fs';
 // import path from 'path';
 // import process from 'process';
