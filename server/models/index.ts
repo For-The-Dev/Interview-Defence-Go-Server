@@ -16,6 +16,9 @@ export const sequelize = new Sequelize(
       dateStrings: true,
       typeCast: true,
     },
+    define: {
+      timestamps: false,
+    },
   }
 );
 
