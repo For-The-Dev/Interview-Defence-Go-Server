@@ -62,7 +62,6 @@ const checkAllAnswer = async (req: Request, res: Response) => {
 
     res.json(responseAllData);
   } catch (e) {
-    console.log(e);
     res.status(500).send('서버 에러');
   }
 };

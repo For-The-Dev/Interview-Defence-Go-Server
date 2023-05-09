@@ -58,8 +58,7 @@ const interviewSet = async (req: Request, res: Response) => {
 
     res.json(interviewDataFilter);
   } catch (e) {
-    console.log(e);
-    res.status(500).send('서버 에러');
+    res.status(500).send(`${e}, 서버 에러`);
   }
 
   // 빈 항목은 제외 시킴
