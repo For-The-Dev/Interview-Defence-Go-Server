@@ -49,7 +49,7 @@ jobs:
                   value: https://port-0-interview-defence-go-server-xiy3e2blhewbwwe.sel4.cloudtype.app
               ports: "8080"
               build: ''
-              start: cd server && npm run start
+              start: npm run start
             context:
               git:
                 url: git@github.com:${{ github.repository }}.git
