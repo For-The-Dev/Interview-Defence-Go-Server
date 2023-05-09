@@ -10,7 +10,7 @@ export const sequelize = new Sequelize(
   {
     dialect: 'sqlite',
     storage: './database.sqlite3',
-    timezone: 'Asia/Seoul',
+    timezone: '+09:00',
     dialectOptions: {
       charset: 'utf8mb4',
       dateStrings: true,
