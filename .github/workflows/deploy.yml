@@ -1,0 +1,51 @@
+name: Deploy to cloudtype
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Connect deploy key
+        uses: cloudtype-github-actions/connect@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          ghtoken: ${{ secrets.GHP_TOKEN }}
+      - name: Deploy
+        uses: cloudtype-github-actions/deploy@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          project: kuu0404/interview-defence-go-server
+          stage: main
+          yaml: >
+            name: interview-defence-go-server
+
+            app: node@18
+
+            options:
+              env:
+                - name: CLIENT_ID
+                  value: bbe7be384fcf2f78834b
+                - name: CLIENT_SECRET
+                  value: fc63a46c5ac846351e265a42ec24ba1d8cdc7ce1
+                - name: CLIENT_PRODUCTION_URL
+                  value: https://interview-defence-go-client.vercel.app
+                - name: OPENAI_SECRET_KEY
+                  value: https://indego-server.fly.dev
+                - name: OPENAI_SECRET_KEY
+                  value: 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
+                - name: OPENAI_ORGANIZATION
+                  value: org-dDARWXpK7U925D1Ja1gJHW8C
+                - name: SERVER_URL
+                  value: https://port-0-interview-defence-go-server-xiy3e2blhewbwwe.sel4.cloudtype.app
+              ports: "8080"
+              build: npm run build
+              start: npm run start
+            context:
+              git:
+                url: git@github.com:${{ github.repository }}.git
+                ref: ${{ github.ref }}
+              preset: node
