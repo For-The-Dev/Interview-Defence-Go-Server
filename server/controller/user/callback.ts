@@ -41,6 +41,7 @@ const callback = async (req: Request, res: Response) => {
       defaults: {
         nickName,
         avatar_url,
+        githubId: githubId,
       },
     });
 
