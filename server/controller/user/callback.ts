@@ -3,6 +3,7 @@ import axios from 'axios';
 import getUserInfo from '../../utils/getUserInfo';
 import { Request, Response } from 'express';
 import { User } from '../../models/user';
+import setTimeKorea from '../../utils/setTimeKorea';
 
 dotenv.config();
 
@@ -42,6 +43,7 @@ const callback = async (req: Request, res: Response) => {
         nickName,
         avatar_url,
         githubId: githubId,
+        createdAt: setTimeKorea(),
       },
     });
 

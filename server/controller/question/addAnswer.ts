@@ -1,6 +1,7 @@
 import { Response, Request, NextFunction } from 'express';
 import checkUserTable from '../../utils/checkUserTable';
 import { Question, Answer } from '../../models/user';
+import setTimeKorea from '../../utils/setTimeKorea';
 
 // 해당 라우터는 진짜 첫 질문과 첫 답변을 등록하는 곳이다.
 const addAnswer = async (req: Request, res: Response, next: NextFunction) => {
@@ -20,12 +21,14 @@ const addAnswer = async (req: Request, res: Response, next: NextFunction) => {
     return res.status(400).send('존재하지 않습니다.');
   try {
     const tableName = await checkUserTable(githubId);
+
     if (!tableName) throw new Error('UnAuthorized');
     const createAnswer = await Answer.create({
       text: answer,
       QuestionId: +id,
       UserGithubId: githubId,
       nickName,
+      createdAt: setTimeKorea(),
     });
 
     next();
