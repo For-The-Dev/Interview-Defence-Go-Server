@@ -5,6 +5,7 @@ interface UserAttributes {
   nickName: string;
   avatar_url: string;
   githubId: number;
+  createdAt?: Date;
 }
 
 interface UserCreationAttributes extends Optional<UserAttributes, 'githubId'> {}
@@ -38,6 +39,7 @@ interface QuestionAttributes {
   UserGithubId?: number;
   id?: number;
   nickName: string;
+  createdAt?: Date;
 }
 
 interface QuestionCreationAttributes
