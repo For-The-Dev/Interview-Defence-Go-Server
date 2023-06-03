@@ -1,3 +1,4 @@
+import axios, { AxiosResponse } from 'axios';
 import { Response, Request } from 'express';
 
 const OpenAI = require('openai');
@@ -42,22 +43,50 @@ const interviewSet = async (req: Request, res: Response) => {
       stacksArr.push(stacksArr[randomIdx]);
     }
   }
+  const headers = {
+    'Content-Type': 'application/json',
+    authorization: `KakaoAK ${process.env.Kakao_API_KEY}`,
+  };
+
+  const data = {
+    prompt: `정보 : 프론트엔드 개발자 채용을 위한 면접관.
+    예) 스택 : javascript
+    Q : javascript의 this 용법에 대해서 설명해주세요.
+    Q : javascript의 클로저 개념에 대해서 설명해주세요.
+    Q : javascript의 스코프에 대해 설명해주세요.
+
+    예시처럼 현재 스택에 대한 Q를 작성하세요.
+    현재 스택 : react
+    Q : 
+    `,
+    max_tokens: 300,
+    temperature: 0.3,
+    top_p: 0.85,
+  };
 
   try {
-    const responses = await Promise.all(
-      stacksArr.map((stack: string) => {
-        return getAiInterview(stack);
-      })
-    );
+    console.log(headers.authorization);
+    const response: AxiosResponse<{ id: string; generagtions: string[] }> =
+      await axios.post(
+        'https://api.kakaobrain.com/v1/inference/kogpt/generation',
+        data,
+        { headers }
+      );
+    // const responses = await Promise.all(
+    //   stacksArr.map((stack: string) => {
+    //     return getAiInterview(stack);
+    //   })
+    // );
 
-    const interviewDataFilter = responses.map((data) => {
-      return data.data.choices[0].text
-        .split(/[\n!@#$%^&*(),.?":{}|<>]/)
-        .join('');
-    });
-
-    res.json(interviewDataFilter);
+    // const interviewDataFilter = responses.map((data) => {
+    //   return data.data.choices[0].text
+    //     .split(/[\n!@#$%^&*(),.?":{}|<>]/)
+    //     .join('');
+    // });
+    console.log(response.data);
+    res.json('response');
   } catch (e) {
+    console.log(e);
     res.status(500).send(`${e}, 서버 에러`);
   }
 
