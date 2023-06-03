@@ -1,6 +1,7 @@
 import { Response, Request, NextFunction } from 'express';
 import checkUserTable from '../../utils/checkUserTable';
 import { Question, Answer } from '../../models/user';
+import setTimeKorea from '../../utils/setTimeKorea';
 
 interface QAType {
   answer: string;
@@ -39,6 +40,7 @@ const editQuestion = async (
           text: question,
           UserGithubId: githubId,
           nickName,
+          createdAt: setTimeKorea(),
         });
         return createQuestion;
       })
@@ -52,6 +54,7 @@ const editQuestion = async (
           QuestionId: qa.id,
           UserGithubId: githubId,
           nickName,
+          createdAt: setTimeKorea(),
         });
         return createAnswer;
       })
